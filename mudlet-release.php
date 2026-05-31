@@ -88,7 +88,11 @@ class MudletRelease
 
         if (substr($payload->release->tag_name, -2) != ".0") {
             wp_die("Not major release. Skipping.");
-        } 
+        }
+
+        if ($result->prerelease) {
+            wp_die("Prerelease. Skipping.");
+        }
 
         if ($result->id) {
             echo "Release webhook firing\n";
